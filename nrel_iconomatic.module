@@ -24,7 +24,7 @@ function nrel_iconomatic_page_build() {
       'scope' => variable_get('nrel_iconomatic_scope', NREL_ICONOMATIC_SCOPE_DEFAULT),
       'group' => JS_LIBRARY,
       'every_page' => TRUE,
-      'weight' => -999,
+      'weight' => 1,
       'preprocess' => 0,
     )
   );
@@ -35,7 +35,7 @@ function nrel_iconomatic_page_build() {
  */
 function nrel_iconomatic_library() {
   $libraries['nrel_iconomatic'] = array(
-    'title' => 'Nrel_Iconomatic.jquery',
+    'title' => 'NREL-Iconomatic.js',
     'website' => 'https://github.nrel.gov/communications/nrel_iconomatic',
     'version' => '',
     'js' => array(
@@ -73,5 +73,5 @@ function nrel_iconomatic_get_library_path() {
  * Helper function gets the path to the library Javascript file
  */
 function nrel_iconomatic_get_library_file() {
-  return nrel_iconomatic_get_library_path() . '/jquery.iconomatic.min.js';
+  return nrel_iconomatic_get_library_path() . '/jquery.iconomatic.js';
 }
