@@ -1,5 +1,5 @@
-name = Nrel_Iconomatic.js
-description = nrel_iconomatic.jquery integration for Drupal
+name = NREL-Iconomatic.js
+description = nrel-iconomatic.js integration for Drupal
 core = 7.x
 package = NREL
 

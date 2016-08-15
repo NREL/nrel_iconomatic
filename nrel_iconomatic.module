@@ -5,7 +5,7 @@
  * Main file for the Nrel_Iconomatic.js module
  */
 
-define('NREL_ICONOMATIC_DOWNLOAD_LOCATION', 'sites/all/libraries/nrel_iconomatic');
+define('NREL_ICONOMATIC_DOWNLOAD_LOCATION', 'sites/all/libraries/nrel-iconomatic');
 define('NREL_ICONOMATIC_SCOPE_DEFAULT','header');
 define('NREL_ICONOMATIC_QUIET_DEFAULT',NULL);
 
@@ -15,7 +15,6 @@ define('NREL_ICONOMATIC_QUIET_DEFAULT',NULL);
  * This is the function that adds iconomatic.js to the page.
  */
 function nrel_iconomatic_page_build() {
-  dpm("foo bar");
   // We need iconomatic.js to load as soon in the HTML as possible, because it can
   // affect the presentation of a page. The options below ensure that it happens.
   drupal_add_js(
@@ -74,6 +73,5 @@ function nrel_iconomatic_get_library_path() {
  * Helper function gets the path to the library Javascript file
  */
 function nrel_iconomatic_get_library_file() {
-  dpm("nrel_iconomatic_get_library_file");
   return nrel_iconomatic_get_library_path() . '/jquery.iconomatic.min.js';
 }
