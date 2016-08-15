@@ -1,0 +1,10 @@
+name = Nrel_Iconomatic.js
+description = nrel_iconomatic.jquery integration for Drupal
+core = 7.x
+package = NREL
+
+files[] = nrel_iconomatic.module
+
+version = "7.x-1.0"
+core = "7.x"
+project = "nrel_iconomatic"

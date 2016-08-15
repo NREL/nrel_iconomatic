@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @file
+ * Main file for the Nrel_Iconomatic.js module
+ */
+
+define('NREL_ICONOMATIC_DOWNLOAD_LOCATION', 'sites/all/libraries/nrel_iconomatic');
+define('NREL_ICONOMATIC_SCOPE_DEFAULT','header');
+define('NREL_ICONOMATIC_QUIET_DEFAULT',NULL);
+
+/**
+ * Implements hook_page_build().
+ *
+ * This is the function that adds iconomatic.js to the page.
+ */
+function nrel_iconomatic_page_build() {
+  dpm("foo bar");
+  // We need iconomatic.js to load as soon in the HTML as possible, because it can
+  // affect the presentation of a page. The options below ensure that it happens.
+  drupal_add_js(
+    nrel_iconomatic_get_library_file(),
+    array(
+      'type' => 'file',
+      'scope' => variable_get('nrel_iconomatic_scope', NREL_ICONOMATIC_SCOPE_DEFAULT),
+      'group' => JS_LIBRARY,
+      'every_page' => TRUE,
+      'weight' => -999,
+      'preprocess' => 0,
+    )
+  );
+}
+
+/**
+ * Implements hook_library().
+ */
+function nrel_iconomatic_library() {
+  $libraries['nrel_iconomatic'] = array(
+    'title' => 'Nrel_Iconomatic.jquery',
+    'website' => 'https://github.nrel.gov/communications/nrel_iconomatic',
+    'version' => '',
+    'js' => array(
+      nrel_iconomatic_get_library_file() => array(),
+    ),
+  );
+  return $libraries;
+}
+
+/**
+ * Helper function gets the path to the library directory
+ */
+function nrel_iconomatic_get_library_path() {
+  $default_path = drupal_get_path('module', 'nrel_iconomatic') . '/lib';
+
+  // If Libraries API is enabled, make sure the file exists before pointing there
+  if (function_exists('libraries_get_path') && file_exists(libraries_get_path('nrel-iconomatic'))) {
+    $path = libraries_get_path('nrel-iconomatic');
+  }
+  // iconomatic.js is awesome so we can ship it in the module folder as a fallback.
+  // However, we still check to be on the safe side.
+  else if (file_exists($default_path)) {
+    $path = $default_path;
+  }
+  // If the module's files have been altered, we should not report the default path.
+  // repsondjs_requirements() will report this error.
+  else {
+    $path = NULL;
+  }
+
+  return $path;
+}
+
+/**
+ * Helper function gets the path to the library Javascript file
+ */
+function nrel_iconomatic_get_library_file() {
+  dpm("nrel_iconomatic_get_library_file");
+  return nrel_iconomatic_get_library_path() . '/jquery.iconomatic.min.js';
+}
