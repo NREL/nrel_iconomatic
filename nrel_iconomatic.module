@@ -28,6 +28,17 @@ function nrel_iconomatic_page_build() {
       'preprocess' => 0,
     )
   );
+
+  $js = "
+    (function ($) {
+      Drupal.behaviors.nrel_iconomatic = {
+        attach: function (context, settings) {
+          $('body').iconomatic();
+        }
+      };
+
+    })(jQuery);";
+  drupal_add_js($js, 'inline');
 }
 
 /**
