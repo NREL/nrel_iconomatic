@@ -39,6 +39,9 @@ function nrel_iconomatic_page_build() {
 
     })(jQuery);";
   drupal_add_js($js, 'inline');
+
+  drupal_add_css('i.fileIcon {margin-left: 4px;}',
+    array('group' => CSS_THEME, 'type' => 'inline'));
 }
 
 /**
