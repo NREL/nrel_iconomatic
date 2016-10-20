@@ -5,7 +5,7 @@
  * Main file for the Nrel_Iconomatic.js module
  */
 
-define('NREL_ICONOMATIC_DOWNLOAD_LOCATION', 'sites/all/libraries/nrel-iconomatic');
+define('NREL_ICONOMATIC_DOWNLOAD_LOCATION', 'profiles/communications/libraries/nrel-iconomatic');
 define('NREL_ICONOMATIC_SCOPE_DEFAULT','header');
 define('NREL_ICONOMATIC_QUIET_DEFAULT',NULL);
 
