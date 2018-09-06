@@ -10,6 +10,20 @@ define('NREL_ICONOMATIC_SCOPE_DEFAULT','header');
 define('NREL_ICONOMATIC_QUIET_DEFAULT',NULL);
 
 /**
+ * Implements hook_menu().
+ */
+function nrel_iconomatic_menu() {
+  $items['admin/config/nrel-iconomatic'] = array(
+    'title' => 'NREL Iconomatic Settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('nrel_iconomatic_settings_form'),
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM | MENU_LOCAL_TASK,
+  );
+
+  return $items;
+}
+/**
  * Implements hook_page_build().
  *
  * This is the function that adds iconomatic.js to the page.
@@ -29,11 +43,18 @@ function nrel_iconomatic_page_build() {
     )
   );
 
+  // Set up options - we are only implementing the AJAX option currently.
+  $options = array();
+  $ajax = variable_get('nrel_iconomatic_ajax', 0);
+  if (!empty($ajax)) {
+    $options[] = 'ajax: true';
+  }
+  $options_str = implode(', ', $options);
   $js = "
     (function ($) {
       Drupal.behaviors.nrel_iconomatic = {
         attach: function (context, settings) {
-          $('body').iconomatic();
+          $('body').iconomatic({" . $options_str . "});
         }
       };
 
@@ -42,6 +63,27 @@ function nrel_iconomatic_page_build() {
 
   drupal_add_css('i.fileIcon {margin-left: 4px;}',
     array('group' => CSS_THEME, 'type' => 'inline'));
+}
+
+/**
+ * Custom setting form
+ */
+function nrel_iconomatic_settings_form($form, &$form_state) {
+  // NREL Iconomatic configuration form.
+  $form['nrel_iconomatic_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('NREL Iconomatic Settings'),
+  );
+  // AJAX option - @see
+  // profiles/communication/libraries/nrel-iconomatic/README.md
+  $form['nrel_iconomatic_settings']['nrel_iconomatic_ajax'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('AJAX detection'),
+    '#description' => t('Listen for DOM changes using the MutationObserver object.'),
+    '#default_value' => variable_get('nrel_iconomatic_ajax', 0),
+  );
+
+  return system_settings_form($form);
 }
 
 /**
