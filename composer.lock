@@ -1,0 +1,40 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "0d1ad07c7147af68ed129668a86ef466",
+    "packages": [
+        {
+            "name": "bower-asset/nrel-iconomatic",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NREL/nrel-iconomatic.git",
+                "reference": "3846634c3a6ba1fe34f1a8f376c218bb3c48136d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NREL/nrel-iconomatic/zipball/3846634c3a6ba1fe34f1a8f376c218bb3c48136d",
+                "reference": "3846634c3a6ba1fe34f1a8f376c218bb3c48136d",
+                "shasum": null
+            },
+            "type": "bower-asset",
+            "license": [
+                "MIT"
+            ],
+            "time": "2018-11-26T19:58:47+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "bower-asset/nrel-iconomatic": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

@@ -3,5 +3,40 @@
   "description": "NREL module to enable nrel_iconomatic javascript library",
   "type": "drupal-module",
   "license": "GPL-2.0+",
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "require": {
+    "bower-asset/nrel-iconomatic": "dev-master"
+  },
+  "repositories": {
+        "local" : {
+            "type": "composer",
+            "url": "http://packagist.test"
+        },
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/7"
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    },
+  "extra": {
+    "installer-types": [
+      "bower-asset",
+      "npm-asset"
+    ],
+    "installer-paths": {
+      "web/sites/all/libraries/{$name}": [
+        "type:drupal-library",
+        "type:bower-asset",
+        "type:npm-asset",
+        "type:component"
+      ]
+    },
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+    },
+    "enable-patching": true
+  }
 }
