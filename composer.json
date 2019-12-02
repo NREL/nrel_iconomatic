@@ -1,5 +1,5 @@
 {
-  "name": "drupal/nrel_iconomatic",
+  "name": "nrel/nrel_iconomatic",
   "description": "NREL module to enable nrel_iconomatic javascript library",
   "type": "drupal-module",
   "license": "GPL-2.0+",
